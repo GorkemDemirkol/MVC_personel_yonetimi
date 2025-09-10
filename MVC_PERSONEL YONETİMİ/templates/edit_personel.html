@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>Personel Düzenle</title>
+</head>
+<body>
+    <h1>Personel Düzenle</h1>
+    <form action="/edit/{{ personel[0] }}" method="POST">
+        <input type="text" name="isim" value="{{ personel[1] }}" required>
+        <input type="datetime-local" name="giris_saati" value="{{ personel[2] }}"  placeholder="Giriş Saati">
+        <input type="datetime-local" name="cikis_saati" value="{{ personel[3] }}"  placeholder="Çıkış Saati">
+        <label>
+            İzin:
+            <input type="checkbox" name="izin" {% if personel[4] %}checked {% endif %}>
+        </label>
+         <button type="submit">Güncelle</button>
+         
+
+    </form>
+    <a href="/">Geri Dön</a>
+</body>
+</html>

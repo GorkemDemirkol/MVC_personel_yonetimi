@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>Personel Yönetimi Sistemi</title>
+</head>
+<body>
+    <!-- Dark/Light Toggle Switch -->
+    <label class="switch">
+        <input type="checkbox">
+        <span></span>
+    </label>
+
+    <h1>Personel Yönetimi</h1>
+    <a href="/add">Yeni Personel Ekle</a>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>İsim</th>
+            <th>Giriş saati</th>
+            <th>Çıkış saati</th>
+            <th>İzin</th>
+            <th>Günlük maaş</th>
+            <th>-</th>
+            <th>-</th>
+        </tr>
+        {% for personel in personeller %}
+        <tr>
+            <td>{{personel[0] }}</td>
+            <td>{{personel[1] }}</td>
+            <td>{{personel[2] }}</td>
+            <td>{{personel[3] }}</td>
+            <td>{{'Evet' if personel[4] else 'Hayır' }}</td>
+            <td>{{personel[5] }}</td>
+            <td>:</td>
+            <td>
+                <a href="/edit/{{personel[0]}}">Düzenle</a>
+                <a href="/delete/{{personel[0]}}">Sil</a>
+                <a href="/maas/{{personel[0]}}">Maaş Hesapla</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
